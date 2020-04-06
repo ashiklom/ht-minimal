@@ -1,0 +1,46 @@
+{
+    "forward_model": {
+        "instrument": {
+            "integrations": 1,
+            "wavelength_file": "./data/wavelengths.txt"
+        },
+        "libradtran_radiative_transfer": {
+            "configure_and_exit": true,
+            "domain" : {
+                "end": 2520,
+                "start": 350,
+                "step": 0.1
+            },
+            "lut_grid": {
+                "AOT550": [0.001, 0.123, 0.6],
+                "H2OSTR": [2.216, 2.716, 3.216]
+            },
+            "libradtran_template_file": "./data/lrt_template.json",
+            "statevector": {
+                "AOT550": {
+                    "bounds": [0.001, 0.6],
+                    "init": 0.123,
+                    "prior_mean": 0.123,
+                    "prior_sigma": 1.0,
+                    "scale": 0.1
+                },
+                "H2OSTR": {
+                    "bounds": [2.216, 3.216],
+                    "init": 2.716,
+                    "prior_mean": 2.716,
+                    "prior_sigma": 5.0,
+                    "scale": 0.1
+                }
+            }
+        },
+        "surface": {
+            "wavelength_file": "./data/wavelengths.txt"
+        }
+    },
+    "input": {
+        "reflectance_file": "./data/reference_reflectance"
+    },
+    "inversion": {
+        "windows": [[400, 1300], [1450, 1780], [1950, 2450]]
+    }
+ }
