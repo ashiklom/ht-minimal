@@ -1,6 +1,11 @@
 {
-    "atm": [0, 1, 2, 3],
-    "az": [90, 135, 180],
-    "zen": [0, 15, 30, 45, 60, 75],
-    "outdir": "./outputs"
+    "atmospheres": [
+        "midlatitude_summer",
+        "midlatitude_winter"
+    ],
+    "dates": ["2017-06-01"],
+    "times": ["1900"],
+    "vzen": [0],
+    "outdir": "./outputs",
+    "reflectance_file":  "./data/reference_reflectance"
  }
