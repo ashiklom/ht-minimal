@@ -12,7 +12,7 @@
 atmosphere_file midlatitude_winter
 
 # File path for incident solar spectrum
-source solar /Users/ashiklom/projects/sbg-uncertainty/isofit/data/kurudz_0.1nm.dat
+source solar ../data/solar_flux/kurudz_1.0nm.dat
 
 # Albedo -- this will be modified by isofit
 albedo {albedo}
