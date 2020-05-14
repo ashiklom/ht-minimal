@@ -41,6 +41,7 @@
             }
         },
         "surface": {
+            "surface_category": "surface",
             "reflectance_file": "./data/reference_reflectance"
         }
     },
