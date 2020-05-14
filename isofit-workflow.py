@@ -23,6 +23,11 @@ def save_json(obj, json_path):
 with open("config.json") as f:
     config = json.load(f)
 
+# Set environment variables if present
+if "env" in config:
+    for key, value in config["env"].items():
+        os.environ[key] = value
+
 # Check config file
 assert ('outdir' in config), "Missing `outdir` in config"
 outdir = mkdir_f(config["outdir"])
