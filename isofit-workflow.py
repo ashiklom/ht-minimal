@@ -24,6 +24,8 @@ with open("config.json") as f:
 
 # Check config file
 assert ('outdir' in config), "Missing `outdir` in config"
+assert ('reflectance' in config), "Missing 'reflectance' in config"
+
 outdir = mkdir_f(config["outdir"])
 
 # Read Isofit template file
@@ -33,8 +35,9 @@ with open("template.json") as f:
 # Get file extension of input reflectance
 # If it's text, spit out text.
 # Otherwise, assume binary (ENVI shapefile)
-infile = template["forward_model"]["surface"]["reflectance_file"]
+infile = config["reflectance"]
 is_txt = infile.endswith(".txt")
+assert(is_txt), "Only ASCII (.txt) reflectance files currently supported."
 if is_txt:
     ext = ".txt"
 else:
@@ -81,7 +84,7 @@ for date in config["dates"]:
                 # Fix a few other important absolute paths
                 lrt_config["wavelength_file"] = os.path.abspath(lrt_config["wavelength_file"])
                 forward_config["forward_model"]["instrument"]["wavelength_file"] = os.path.abspath(forward_config["forward_model"]["instrument"]["wavelength_file"])
-                forward_config["forward_model"]["surface"]["reflectance_file"] = os.path.abspath(forward_config["forward_model"]["surface"]["reflectance_file"])
+                forward_config["forward_model"]["surface"]["reflectance_file"] = os.path.abspath(infile)
 
                 case_outdir = mkdir_f(casedir, "output")
                 simulated_radfile = os.path.join(case_outdir, "simulated_toa_radiance" + ext)

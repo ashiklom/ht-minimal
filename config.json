@@ -7,7 +7,7 @@
     "times": ["1900"],
     "vzen": [0],
     "outdir": "./outputs",
-    "reflectance_file":  "./data/reference_reflectance",
+    "reflectance": "./data/prosail-example.txt",
     "env": {
         "LIBRADTRAN_DIR": "/Users/ashiklom/projects/models/libradtran/libRadtran-2.0.3/"
     }
