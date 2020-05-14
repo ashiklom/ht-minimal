@@ -22,11 +22,6 @@ def save_json(obj, json_path):
 with open("config.json") as f:
     config = json.load(f)
 
-# Set environment variables if present
-if "env" in config:
-    for key, value in config["env"].items():
-        os.environ[key] = value
-
 # Check config file
 assert ('outdir' in config), "Missing `outdir` in config"
 outdir = mkdir_f(config["outdir"])
@@ -50,6 +45,12 @@ else:
 final_script_file = os.path.join(outdir, "run_all.sh")
 final_script = open(final_script_file, "w")
 final_script.write("#!/usr/bin/env bash\n")
+
+# Set environment variables if present
+if "env" in config:
+    for key, value in config["env"].items():
+        final_script.write("export {}={}\n".format(key, value))
+
 for date in config["dates"]:
     for time in config["times"]:
         assert (len(time) == 4), "Invalid time format. Must be HHMM."
@@ -106,6 +107,9 @@ for date in config["dates"]:
                 with open(scriptfile, "w") as f:
                     f.write("#!/usr/bin/env bash\n")
                     f.write("set -e\n")
+                    if "env" in config:
+                        for key, value in config["env"].items():
+                            f.write("export {}={}\n".format(key, value))
                     f.write("echo 'Starting forward mode'\n")
                     f.write("isofit --level DEBUG {}\n".format(forward_file))
                     f.write("echo 'Done!'\n")
