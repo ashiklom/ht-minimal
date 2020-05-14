@@ -6,14 +6,6 @@
             "SNR": 300
         },
         "radiative_transfer": {
-            "libradtran_vswir": {
-                "wavelength_file": "./data/wavelengths.txt",
-                "libradtran_directory": "/Users/ashiklom/projects/models/libradtran/libRadtran-2.0.3/",
-                "libradtran_template_file": "./data/lrt_template_temp.inp",
-                "lut_path": "./test-outputs/lut-lrt/",
-                "lut_names": ["H2OSTR", "AOT550"],
-                "statevector_names": ["H2OSTR", "AOT550"]
-            },
             "statevector": {
                 "AOT550": {
                     "bounds": [0.001, 0.6],
@@ -36,6 +28,16 @@
             },
             "unknowns": {
                 "H2O_ABSCO": 0.01
+            },
+            "radiative_transfer_engines":{
+                "vswir": {
+                    "engine_name": "libradtaran",
+                    "wavelength_file": "./data/wavelengths.txt",
+                    "template_file": "./data/lrt_template_temp.inp",
+                    "lut_path": "./test-outputs/lut-lrt/",
+                    "lut_names": ["H2OSTR", "AOT550"],
+                    "statevector_names": ["H2OSTR", "AOT550"]
+                }
             }
         },
         "surface": {

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import json
-import isofit
 import os
 import copy
 
@@ -57,13 +56,15 @@ for date in config["dates"]:
         for atm in config["atmospheres"]:
             for vzen in config["vzen"]:
 
+                # function of date, time, atm, vzen
+
                 year, month, day = date.split("-")
                 hour = time[0:2]
                 minute = time[2:4]
 
                 casedir = mkdir_f(outdir, "atm_{}__{}__{}__vzen_{:.2f}".format(atm, date, time, vzen))
 
-                lrt_template = open(template["forward_model"]["radiative_transfer"]["libradtran_vswir"]["libradtran_template_file"], "r").read()
+                lrt_template = open(template["forward_model"]["radiative_transfer"]["radiative_transfer_engines"]["vswir"]["template_file"], "r").read()
                 lrt_configuration = lrt_template.format(atmosphere = atm, year = year, month = month, day = day,
                                                         hour = hour, minute = minute)
                 lut_path = mkdir_f(casedir, "lut")
@@ -72,9 +73,9 @@ for date in config["dates"]:
                     f.write(lrt_configuration)
 
                 forward_config = copy.deepcopy(template)
-                lrt_config = forward_config["forward_model"]["radiative_transfer"]["libradtran_vswir"]
+                lrt_config = forward_config["forward_model"]["radiative_transfer"]["radiative_transfer_engines"]["vswir"]
                 lrt_config["lut_path"] = lut_path
-                lrt_config["libradtran_template_file"] = lrt_outfile
+                lrt_config["template_file"] = lrt_outfile
 
                 # Fix a few other important absolute paths
                 lrt_config["wavelength_file"] = os.path.abspath(lrt_config["wavelength_file"])
