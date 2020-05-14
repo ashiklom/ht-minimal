@@ -34,7 +34,7 @@ with open("template.json") as f:
 # If it's text, spit out text.
 # Otherwise, assume binary (ENVI shapefile)
 infile = template["forward_model"]["surface"]["reflectance_file"]
-is_txt = infile.endswith("\\.txt")
+is_txt = infile.endswith(".txt")
 if is_txt:
     ext = ".txt"
 else:
