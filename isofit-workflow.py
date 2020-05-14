@@ -120,4 +120,4 @@ for date in config["dates"]:
                     f.write("isofit --level DEBUG {}\n".format(inverse_file))
                     f.write("echo 'Done!'")
 
-                final_script.write("bash {} &> {}/log \n".format(scriptfile, casedir))
+                final_script.write("bash {} &> {}/log & \n".format(scriptfile, casedir))
