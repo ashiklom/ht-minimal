@@ -86,7 +86,7 @@ for date in config["dates"]:
                 case_outdir = mkdir_f(casedir, "output")
                 simulated_radfile = os.path.join(case_outdir, "simulated_toa_radiance" + ext)
                 forward_config["output"] = {"simulated_measurement_file": simulated_radfile}
-                forward_config["inversion"]["simulation_mode"] = True
+                forward_config["implementation"]["inversion"]["simulation_mode"] = True
                 forward_file = os.path.join(casedir, "forward.json")
                 save_json(forward_config, forward_file)
 

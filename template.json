@@ -31,7 +31,7 @@
             },
             "radiative_transfer_engines":{
                 "vswir": {
-                    "engine_name": "libradtaran",
+                    "engine_name": "libradtran",
                     "wavelength_file": "./data/wavelengths.txt",
                     "template_file": "./data/lrt_template_temp.inp",
                     "lut_path": "./test-outputs/lut-lrt/",
@@ -44,7 +44,9 @@
             "reflectance_file": "./data/reference_reflectance"
         }
     },
-    "inversion": {
-        "windows": [[400, 1300], [1450, 1780], [1950, 2450]]
+    "implementation":{
+        "inversion": {
+            "windows": [[400, 1300], [1450, 1780], [1950, 2450]]
+        }
     }
 }
