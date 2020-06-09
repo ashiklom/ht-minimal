@@ -25,7 +25,7 @@ Executing a workflow involves two steps:
 - Run `python isofit-workflow.py` to generate the Isofit configuration files
 - Run `bash <outdir>/run_all.sh` script to actually execute the workflow. Note that this uses native bash background process syntax (`&`) to run workflows in parallel over as many cores as are available.
 
-# Hypertrace workflow
+# General uncertainty propagation workflow
 
 ## Forward model
 
