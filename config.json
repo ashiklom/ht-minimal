@@ -1,13 +1,12 @@
 {
     "atmospheres": [
-        "midlatitude_summer",
-        "midlatitude_winter"
+        "midlatitude_summer"
     ],
     "dates": ["2017-06-01"],
     "times": ["1900"],
-    "vzen": [0],
+    "vzen": [0, 10, 20],
     "outdir": "./outputs",
-    "reflectance": "./data/prosail-example.txt",
+    "reflectance": "./data/reference_reflectance",
     "env": {
         "LIBRADTRAN_DIR": "/Users/ashiklom/projects/models/libradtran/libRadtran-2.0.3/"
     }

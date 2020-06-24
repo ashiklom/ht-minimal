@@ -37,7 +37,7 @@ with open("template.json") as f:
 # Otherwise, assume binary (ENVI shapefile)
 infile = config["reflectance"]
 is_txt = infile.endswith(".txt")
-assert(is_txt), "Only ASCII (.txt) reflectance files currently supported."
+# assert(is_txt), "Only ASCII (.txt) reflectance files currently supported."
 if is_txt:
     ext = ".txt"
 else:
@@ -84,7 +84,7 @@ for date in config["dates"]:
                 # Fix a few other important absolute paths
                 lrt_config["wavelength_file"] = os.path.abspath(lrt_config["wavelength_file"])
                 forward_config["forward_model"]["instrument"]["wavelength_file"] = os.path.abspath(forward_config["forward_model"]["instrument"]["wavelength_file"])
-                forward_config["forward_model"]["surface"]["reflectance_file"] = os.path.abspath(infile)
+                forward_config["input"] = {"reflectance_file" : os.path.abspath(infile)}
 
                 case_outdir = mkdir_f(casedir, "output")
                 simulated_radfile = os.path.join(case_outdir, "simulated_toa_radiance" + ext)
@@ -102,6 +102,7 @@ for date in config["dates"]:
                     "estimated_state_file": os.path.join(case_outdir, "estimated_state" + ext)
                 }
                 inverse_config["forward_model"] = forward_config["forward_model"]
+                inverse_config["forward_model"]["surface"]["surface_file"] = os.path.abspath(inverse_config["forward_model"]["surface"]["surface_file"])
                 inverse_file = os.path.join(casedir, "inverse.json")
                 save_json(inverse_config, inverse_file)
 

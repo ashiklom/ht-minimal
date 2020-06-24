@@ -41,8 +41,8 @@
             }
         },
         "surface": {
-            "surface_category": "surface",
-            "reflectance_file": "./data/prosail-example.txt"
+            "surface_category": "multicomponent_surface",
+            "surface_file": "./data/uninformative-prior.mat"
         }
     },
     "implementation":{
