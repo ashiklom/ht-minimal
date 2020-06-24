@@ -84,6 +84,7 @@ for date in config["dates"]:
                 # Fix a few other important absolute paths
                 lrt_config["wavelength_file"] = os.path.abspath(lrt_config["wavelength_file"])
                 forward_config["forward_model"]["instrument"]["wavelength_file"] = os.path.abspath(forward_config["forward_model"]["instrument"]["wavelength_file"])
+                inverse_config["forward_model"]["surface"]["surface_file"] = os.path.abspath(inverse_config["forward_model"]["surface"]["surface_file"])
                 forward_config["input"] = {"reflectance_file" : os.path.abspath(infile)}
 
                 case_outdir = mkdir_f(casedir, "output")
@@ -102,7 +103,6 @@ for date in config["dates"]:
                     "estimated_state_file": os.path.join(case_outdir, "estimated_state" + ext)
                 }
                 inverse_config["forward_model"] = forward_config["forward_model"]
-                inverse_config["forward_model"]["surface"]["surface_file"] = os.path.abspath(inverse_config["forward_model"]["surface"]["surface_file"])
                 inverse_file = os.path.join(casedir, "inverse.json")
                 save_json(inverse_config, inverse_file)
 
